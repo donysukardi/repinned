@@ -5,6 +5,7 @@ dist
 .opt-in
 .opt-out
 .next
+.docz
 .eslintcache
 .vscode
 storybook-static

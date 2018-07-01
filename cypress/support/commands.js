@@ -12,6 +12,6 @@ function getInStory(selector) {
 }
 
 // see the baseUrl config in cypress.json
-Cypress.Commands.add('visitStory', (kind, name) => {
-  return cy.visit(`/iframe.html?selectedKind=${kind}&selectedStory=${name}`)
+Cypress.Commands.add('visitStory', url => {
+  return cy.visit(url)
 })

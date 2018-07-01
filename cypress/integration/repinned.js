@@ -1,6 +1,6 @@
 describe('Page', () => {
   it('Repinned state gets updated correctly', () => {
-    cy.visitStory('Repinned', 'simple')
+    cy.visitStory('/stories/simple')
 
     cy.getInStoryByTestId('headerContainer').should(
       'have.attr',
@@ -31,7 +31,7 @@ describe('Page', () => {
   })
 
   it('remains fixed when forcePin is applied', () => {
-    cy.visitStory('Repinned', 'forcePin')
+    cy.visitStory('/stories/force-pin')
 
     cy.getInStoryByTestId('headerContainer').should(
       'have.attr',
@@ -49,8 +49,8 @@ describe('Page', () => {
     })
   })
 
-  it('remains fixed when forcePin is applied', () => {
-    cy.visitStory('Repinned', 'disabled')
+  it('remains unfixed when disabled', () => {
+    cy.visitStory('/stories/disabled')
 
     cy.getInStoryByTestId('headerContainer').should(
       'have.attr',

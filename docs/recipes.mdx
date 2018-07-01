@@ -1,0 +1,56 @@
+---
+name: Recipes
+order: 1
+---
+
+# Recipes
+
+## Basic Styling
+
+You should apply the following basic styles to your header component based on the state prop received.
+
+* `unfixed` - position: static
+* `unpinned` - position: sticky/fixed and transform: translateY(-100%)
+* `pinned` - position: sticky/fixed
+
+## Sticky or Fixed
+
+Using `position: fixed` for `pinned`/`unpinned` state is a bit tricky as element with fixed position does not contribute to the height of the container/window.
+
+This way, when switching from `position: static` to `position: fixed`, the overall page height changes, affecting the scoll position.
+
+To work around this, you have to wrap your header component and assign the height of your header to it, e.g.
+
+```jsx
+<Repinned>
+  {({ setRef, height, state }) => (
+    <div style={{ height }}>
+      <FixedHeader innerRef={setRef} state={state} />
+    </div>
+  )}
+</Repinned>
+```
+
+The same does not apply to `position: sticky`, hence you can safely ignore the height provided.
+
+Ref: [Can I Use?](https://caniuse.com/#feat=css-sticky)
+
+```jsx
+<Repinned>
+  {({ setRef, state }) => (
+    <StickyHeader innerRef={setRef} state={state} />
+  )}
+</Repinned>
+```
+
+## Animation
+
+If you'd like to add CSS animation to your header for smoother pinning/unpinning, Repinned exposes `shouldAnimate` in the render function.
+
+This value is only set to `true` if the state switches from `pinned` to `unpinned` or vice-versa.
+
+This helps prevent the header from jumping when switching from `unfixed` to `unpinned` during initial scrolling as we will be animating on `transform` attribute.
+
+The transition would happen from `unfixed` with `transform: none` or `translateY(0)` to `unpinned` with `transform: translateY(-100)`.
+
+Hence it's necessary not to enable transition during this switch.

@@ -1,0 +1,31 @@
+---
+name: API
+order: 2
+---
+
+# API
+
+## Props
+
+| prop                 | type     | default        | description                                                                                                                |
+| -------------------- | -------- | -------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `parent`             | `func`   | `() => window` | Callback returning parent container node                                                                                   |
+| `children`           | `func`   |                | Render function that will receive [Children Render Props](#children-render-props)                                    |
+| `upTolerance`        | `number` | `5`            | Scroll tolerance in px when scrolling up before component is pinned                                                        |
+| `downTolerance`      | `number` | `5`            | Scroll tolerance in px when scrolling down before component is unpinned                                                    |
+| `onPin`              | `func`   | `() => {}`     | Callback when the header gets pinned                                                                                       |
+| `onUnpin`            | `func`   | `() => {}`     | Callback when the header gets unpinned                                                                                     |
+| `onUnfix`            | `func`   | `() => {}`     | Callback when the header gets unfixed                                                                                      |
+| `pinStart`           | `number` | `0`            | Height in px where the header should start and stop pinning. Useful when you have another element above Headroom component |
+| `forcePin`           | `bool`   | `false`        | Flag to persist pinning, this sets the state to `'pinned'`                                                                                                   |
+| `disabled`           | `bool`   | `false`        | Disable pinning and unpinning                                                                                              |
+| `calcHeightOnResize` | `bool`   | `true`         | Flag to indicate whether height should be recalculated on parent resize                                                    |
+
+## Children Render Props
+
+| render prop         | type     | description                                                                                                                |
+| ------------------- | -------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `setRef`            | `func`   | Function to set `ref` on node to track the height, usually the header                                                    |
+| `state`             | `func`   | Current pinned state                                                                                   |
+| `shouldAnimate`     | `bool`   | Flag to apply CSS transition                                  |
+| `height`            | `number` | Height of the node as set in `setRef`                                                        |

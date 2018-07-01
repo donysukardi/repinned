@@ -1,0 +1,19 @@
+{
+  "name": "docs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "docz": "^0.4.0",
+    "docz-plugin-babel6": "^0.4.0",
+    "react-frame-component": "^4.0.0",
+    "react-goodies": "^1.0.0",
+    "react-typography": "^0.16.13",
+    "styled-components": "^3.3.3",
+    "styled-system": "^2.3.2",
+    "typography": "^0.16.17",
+    "typography-plugin-code": "^0.16.11",
+    "typography-theme-fairy-gates": "^0.15.11",
+    "typography-theme-noriega": "^0.15.10"
+  }
+}

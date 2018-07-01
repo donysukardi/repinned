@@ -26,10 +26,11 @@ class Repinned extends Component {
   }
 
   setHeightOffset = () => {
-    this.setState(state =>
-      state.height === this.inner.offsetHeight
-        ? null
-        : { height: this.inner.offsetHeight }
+    this.setState(
+      state =>
+        !this.inner || state.height === this.inner.offsetHeight
+          ? null
+          : { height: this.inner.offsetHeight },
     )
 
     this.resizeTicking = false
@@ -148,7 +149,7 @@ class Repinned extends Component {
         this.currentScrollY,
         this.props,
         this.state,
-        this.state.height
+        this.state.height,
       )
 
       /* istanbul ignore else  */
@@ -166,12 +167,17 @@ class Repinned extends Component {
   }
 
   componentDidMount() {
-    const { disabled, forcePin, parent: parentFn, calcHeightOnResize } = this.props
+    const {
+      disabled,
+      forcePin,
+      parent: parentFn,
+      calcHeightOnResize,
+    } = this.props
     this.setHeightOffset()
 
     const parent = parentFn()
     if (!disabled) {
-      if(!forcePin) {
+      if (!forcePin) {
         parent.addEventListener('scroll', this.handleScroll)
       }
       if (calcHeightOnResize) {
@@ -189,10 +195,10 @@ class Repinned extends Component {
 
   componentDidUpdate(prevProps) {
     const parent = this.props.parent()
-    if(this.props.forcePin && !prevProps.forcePin) {
+    if (this.props.forcePin && !prevProps.forcePin) {
       this.pin()
       parent.removeEventListener('scroll', this.handleScroll)
-    } else if(!this.props.forcePin && prevProps.forcePin) {
+    } else if (!this.props.forcePin && prevProps.forcePin) {
       parent.addEventListener('scroll', this.handleScroll)
     }
 
